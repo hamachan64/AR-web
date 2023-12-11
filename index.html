@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>A-Frame で超簡単 AR</title>
+  </head>
+
+  <body style="margin:0px; overflow:hidden;">
+    <!-- A-Frame ライブラリの読み込み -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- AR.js ライブラリの読み込み -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    
+    <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+    <a-scene embedded arjs="debugUIEnabled:false;">
+
+      <a-assets>
+        <!-- 3Dモデルを読み込む -->
+        <a-asset-item id="coil" src="coil.glb" scale="1 1 1"></a-asset-item>
+      </a-assets>
+
+      <!-- マーカーを登録 -->
+      <a-marker type="pattern" url="pattern-Invitation.patt">
+        <!-- 3Dモデルを呼び出す -->
+        <a-entity gltf-model="#coil" rotation="-90 0 0"></a-entity>
+      </a-marker>
+  
+      <!-- AR用のカメラを置く -->
+      <a-entity camera></a-entity>
+  
+    </a-scene>
+  
+  </body>
+
+  <script>
+    //glTFの表示が暗くなる問題に対処
+    document.querySelector("a-scene").renderer.gammaOutput=true;
+  </script>
+
+</html>
